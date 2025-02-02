@@ -13,7 +13,8 @@ You can use it on:
 
 It does not modify anything.  It should be perfectly safe to run it on
 a block device that has a filesystem on it, even a mounted one.  I do
-that all the time.
+that all the time.  The disk doesn't have to have a filesystem on it
+to use this.
 
 # Usage
 
@@ -72,13 +73,13 @@ result.
 Be careful with the -l (mlock) option.  It can violently push other
 things out of RAM.  You might have to raise ulimits to lock as much
 memory as you wish.  If you use the systemd OOM killer you will
-probably use valuable process groups instead of just the benchmark.
+probably lose valuable process groups instead of just the benchmark.
 You should switch back to the kernel OOM killer.
 
 Dropping filesystem caches before benchmarking improves results.  If
-you just wrote the file and it is smaller than RAM you must do this.
-In general it is recommended that the file size is 1.5 times RAM if
-you can't drop the caches.
+you just wrote the file a short while ago and it is smaller than RAM
+you must do this.  In general it is recommended that the file size is
+1.5 times RAM if you can't drop the caches.
 
 You can find out how much of the file is in RAM with my clockmem
 utility.
