@@ -67,7 +67,7 @@ $ cseekbench -B -t 0.01 -M -l -s $((8 * 1024 * 1024 * 1024))
 Do a memory benchmark by allocating 8 GB of anonymous mmap(2)ed
 memory, mlock(2) it into RAM and run for a hundredth of a second.
 Benchmark the random function first and subtract that time from the
-result.
+result.  What you are actually measuring here is TLB misses.
 
 # Notes
 
