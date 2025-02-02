@@ -8,13 +8,13 @@ time.
 
 You can use it on:
 - regular files
-- block devices including disks and NVMe (most OSes)
+- block devices including raw disks and NVMe (most OSes)
 - anonymous memory
 
 It does not modify anything.  It should be perfectly safe to run it on
 a block device that has a filesystem on it, even a mounted one.  I do
 that all the time.  The disk doesn't have to have a filesystem on it
-to use this.
+to use this in block device mode.
 
 # Usage
 
@@ -26,7 +26,7 @@ measurements.
 
 -h help
 
--l do an mlock(2) on the mmap'ed region.  Has no effect when using
+-l do a mlock(2) on the mmap'ed region.  Has no effect when using
 seek/read.
 
 -m use mmap(2) instead of seek/read.  The default is seek/read.  The
@@ -34,16 +34,17 @@ difference is usually significant.
 
 -M use anonymous memory (implies -m) instead of a file or device.
 
--R <init> initialize the random number generator to <init>.  This
+-R init initialize the random number generator to init.  This
 leads to reproducible seek locations.
 
--s <n> size of the benchmark in bytes.  Default is file or device
-size.  Must be given when using -M.
+-s n size of the benchmark in bytes.  Default is file or device
+size.  Must be given when using -M.  Benchmarked area will be at the
+beginning of the file or device.
 
--t <secs> benchmark time in seconds (floating point supported).
+-t secs benchmark time in seconds (floating point supported).
 Default is 3 seconds.
 
--T <n> use <n> threads.  Default is 1.  Works badly for memory
+-T n use n threads.  Default is 1.  Works badly for memory
 benchmarking. 
 
 # Examples:
